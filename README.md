@@ -1,73 +1,49 @@
-# React + TypeScript + Vite
+# 📈 Dev Career Dashboard (Vite + React + TSX)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+유튜브 촬영/지식공유용으로 만든 개발자 커리어 대시보드입니다.  
+핵심 화면은 `내 몸값 성장 지표(Index)`이며, 실제 연봉 금액을 노출하지 않고 2016년을 100(Base) 으로 둔 비율(Index) 데이터로 커리어 흐름(상승/하락/재성장)을 시각화합니다.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✅ 이 프로젝트로 하고 싶은 것
 
-## React Compiler
+- 영상에서 화면을 띄워 연봉 변화(흐름) 를 설명
+- 연봉 “금액”을 숨기고 Index로 안전하게 공유
+- 이후 기술스택 / 이직 / 워라밸 / 강의(지식공유) 콘텐츠를 왼쪽 메뉴로 계속 추가해 시리즈화
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🧭 콘텐츠 컨텍스트(영상에서 다루는 내러티브)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- 코로나 시기 MAU 300만+ 서비스 경험 기반 이직 → 연봉 큰 상승
+- 개인 사유/워라밸(와이프 임신, “가족이 먼저” 가치관)로 이직 → 2024년 연봉 큰 하락
+- 이직 회사 선택 기준:
+  - 기술스택
+  - 카카오 서비스 운영 관점에서 장기 커리어 자산
+- 확보된 시간을 지식공유/강의로 확장 → 시야 확장 → 재성장
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+> 연봉은 중요하지만, 가치관/환경 변화 속에서 “나를 만들어가는 기회”가 될 수 있다는 메시지를 지향합니다.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 🔐 데이터 정책 (중요)
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+실제 연봉 금액은 코드/화면 어디에도 저장하지 않습니다.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- `2016 = 100`으로 둔 Index만 사용
+- 예: `index: 292.9` → “2016 대비 약 2.93배”
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### 권장 데이터 형태
+```ts
+export interface CareerIndexItem {
+  year: string;
+  index: number; // 2016 = 100
+  event: string;
+}
+
+export const careerIndexHistory: CareerIndexItem[] = [
+  { year: '2016', index: 100, event: '신입 입사 (기준)' },
+  { year: '2023', index: 292.9, event: '점프/최고점' },
+  { year: '2024', index: 210.7, event: '워라밸/가치관 변화로 조정' },
+  { year: '2025', index: 228.6, event: '재성장 시작' },
+];
