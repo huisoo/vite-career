@@ -57,17 +57,35 @@ src/
     └── careerIndexData.ts  # Index 데이터만(금액 금지)
 ```
 
-##5) Routing (URL)
-/ : Home
-/salary : 📈 내 몸값 성장 지표(Index)
-/skills : 🛠️ 기술스택
-/job-move : 🧭 이직
-/wlb : ⚖️ 워라밸
-/teaching : 🎤 강의/지식공유
-
-촬영은 보통 /salary에서 시작하면 가장 깔끔합니다.
+## 5) Routing (URL)
+- / : Home
+- /salary : 📈 내 몸값 성장 지표(Index)
+- /skills : 🛠️ 기술스택 (예정)
+- /job-move : 🧭 이직 (예정)
+- /wlb : ⚖️ 워라밸 (예정)
+- /teaching : 🎤 강의/지식공유 (예정)
 
 
+
+## 6) 실행 방법 (Run)
+
+- 요구사항
+  - Node.js 18+ 권장 (Vite 기준)
+
+- 설치
+```text
+npm install
+```
+
+- 개발 서버 실행
+```text
+npm run dev
+```
+
+- 프로덕션 빌드
+```text
+npm run build
+```
 
 ## 🔐 데이터 정책 (중요)
 
