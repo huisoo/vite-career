@@ -55,7 +55,7 @@ src/
 │   └── TeachingPage.tsx    # 🎤 강의/지식공유 (추가 콘텐츠)
 └── data/
     └── careerIndexData.ts  # Index 데이터만(금액 금지)
-
+```
 
 ##5) Routing (URL)
 / : Home
